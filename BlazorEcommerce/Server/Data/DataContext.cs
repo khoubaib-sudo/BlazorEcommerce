@@ -68,7 +68,7 @@
                                 Id = 3,
                                 Description = "Harry Potter and the Prisoner of Azkaban is a fantasy novel written by British author J. K. Rowling and is the third in the Harry Potter series. The book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.",
                                 ImageUrl = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTxCq_bH4zbVJfhElY0cpceiteJwNKdpK9geEtopx3qNfBAWvzh",
-                       
+                                Featured =true,
                                 Title = "Harry Potter and the Prisoner of Azkaban",
                                 CategoryId = 1
                             },
@@ -77,7 +77,7 @@
                                 Id = 4,
                                 Description = "Harry Potter and the Goblet of Fire is a fantasy novel written by British author J. K. Rowling and the fourth novel in the Harry Potter series. It follows Harry Potter, a wizard in his fourth year at Hogwarts School of Witchcraft and Wizardry, and the mystery surrounding the entry of Harry's name into the Triwizard Tournament, in which he is forced to compete.",
                                 ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY70MaVViV3nExBogvi6xaCADJShzN6IuXN1nq5j5lXzmPiQSU",
-                               
+                                Featured = true,
                                 Title = "Harry Potter and the Goblet of Fire J. K. Rowling",
                                 CategoryId = 1
                             },
@@ -168,7 +168,7 @@
                                 Id = 14,
                                 Description = "Metal Gear Solid V: The Phantom Pain is a 2015 stealth game developed by Kojima Productions and published by Konami.",
                                 ImageUrl = "https://cdn.cdkeys.com/media/catalog/product/m/g/mgs-cover4.jpg",
-                             
+                                Featured = true,
                                 Title = "metal gear solid 5",
                                 CategoryId = 3
                             }
