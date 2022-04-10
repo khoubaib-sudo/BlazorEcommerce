@@ -1,0 +1,18 @@
+﻿.search {
+    height: 40px;
+    width: 80%;
+    border-radius: 60px;
+    background: rgb(112, 0, 15);
+    outline: none;
+    border: 2px solid rgb(112, 0, 15);
+}
+.btn0 {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: rgb(234, 171, 7);
+    color: white;
+    border-radius: 60px;
+    font-weight: 700;
+}

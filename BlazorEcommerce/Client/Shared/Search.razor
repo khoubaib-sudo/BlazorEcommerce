@@ -2,13 +2,15 @@
 @inject IProductService ProductService
 
 <div class="input-group">
+    
     <input @bind-value="searchText"
            @bind-value:event="oninput"
            type="search"
            list="products"
            @onkeyup="HandleSearch"
-           class="form-control"
+           class="me-2 search"
            placeholder="Search..."
+           aria-label="Search"
            @ref="searchInput" />
     <datalist id="products">
         @foreach (var suggestion in suggestions)
@@ -17,11 +19,11 @@
         }
     </datalist>
     <div class="input-group-append">
-        <button class="btn btn-primary" @onclick="SearchProducts">
-            <span class="oi oi-magnifying-glass"></span>
+        <button class="btn0" type="submit" @onclick="SearchProducts">
+            Search
         </button>
     </div>
-
+    
 </div>
 
 
@@ -41,7 +43,7 @@
 
     public void SearchProducts()
     {
-        NavigationManager.NavigateTo($"search/{searchText}");
+        NavigationManager.NavigateTo($"search/{searchText}/1");
     }
     public async Task HandleSearch(KeyboardEventArgs args)
     {

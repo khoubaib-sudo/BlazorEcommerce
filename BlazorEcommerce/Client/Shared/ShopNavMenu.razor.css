@@ -1,6 +1,11 @@
+
 .navbar-toggler {
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(266, 255, 255, 0.1);
+    
 }
+
+
+
 
 .top-row {
     height: 3.5rem;
@@ -9,6 +14,7 @@
 
 .navbar-brand {
     font-size: 1.1rem;
+    font-family: 'Henny Penny', cursive;
 }
 
 .oi {
@@ -22,6 +28,7 @@
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+    
 }
 
 
@@ -33,14 +40,16 @@
         display: flex;
         align-items: center;
         line-height: 3rem;
+        font-family: 'Henny Penny', cursive;
     }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item ::deep a.active {
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+            
+        }
 
-.flex-nav{
+.flex-nav {
     flex-direction: column;
 }
 
