@@ -27,3 +27,8 @@
         height: auto;
     }
 }
+.btn-primary {
+    color: white;
+    background-color: #eaab07;
+    border-radius: var(--border-radius);
+}
