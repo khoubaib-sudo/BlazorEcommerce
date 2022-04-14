@@ -25,7 +25,7 @@
                 }
                 var productVariant = await _context.ProductVariants
                     .Where(v => v.ProductId == item.ProductId
-                   && v.ProductId == item.ProductId)
+                        && v.ProductTypeId == item.ProductTypeId)
                     .Include(v => v.ProductType)
                     .FirstOrDefaultAsync();
                 if (productVariant == null)
@@ -40,6 +40,7 @@
                     Price = productVariant.Price,
                     ProductType = productVariant.ProductType.Name,
                     ProductTypeId = productVariant.ProductTypeId,
+                    Quantity = item.Quantity
 
                 };
                 result.Data.Add(cartProduct);
