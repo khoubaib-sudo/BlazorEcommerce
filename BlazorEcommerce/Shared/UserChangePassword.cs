@@ -12,6 +12,6 @@ namespace BlazorEcommerce.Shared
         [Required, StringLength(50, MinimumLength = 6)]
         public string Password { get; set; } = string.Empty;
         [Compare("Password", ErrorMessage="The passwords do not match.")]
-        public string confirmPassword { get; set; } = string.Empty;
+        public string ConfirmPassword { get; set; } = string.Empty;
     }
 }
