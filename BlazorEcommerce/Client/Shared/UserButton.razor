@@ -1,6 +1,7 @@
 ﻿@inject ILocalStorageService LocalStorge
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager 
+@inject ICartService CartService
 <div class="dropdon">
     <button @onclick="ToggleUserMenu"
             @onfocusout="HideUserMenu"
@@ -36,6 +37,7 @@
     private async Task Logout()
     {
         await LocalStorge.RemoveItemAsync("authToken");
+        await CartService.GetCartItemsCount();
         await AuthenticationStateProvider.GetAuthenticationStateAsync();
         NavigationManager.NavigateTo("");
 
