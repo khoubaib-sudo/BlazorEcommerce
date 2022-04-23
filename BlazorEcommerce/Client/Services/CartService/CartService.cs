@@ -6,12 +6,16 @@ namespace BlazorEcommerce.Client.Services.CartService
     {
         private ILocalStorageService _localStorage;
         private readonly HttpClient _http;
+        private readonly AuthenticationStateProvider _authStateProvider;
 
-        public CartService( ILocalStorageService localStorage, HttpClient http)
+        public CartService( ILocalStorageService localStorage, HttpClient http,
+            AuthenticationStateProvider authStateProvider)
         {
             _localStorage = localStorage;
             _http = http;
+            _authStateProvider = authStateProvider;
         }
+
 
         public ILocalStorageService localStorage { get; }
 
@@ -19,6 +23,14 @@ namespace BlazorEcommerce.Client.Services.CartService
 
         public async Task AddToCart(CartItem cartItem)
         {
+            if((await _authStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated)
+            {
+                Console.WriteLine("user is authenticated");
+            }
+            else
+            {
+                Console.WriteLine("user is nOT authenticated");
+            }
             var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
             if(cart == null)
             {
