@@ -1,37 +1,41 @@
 ﻿@page "/cart"
 @inject ICartService CartService
+@inject IOrderService OrderService 
 <PageTitle>Shopping Cart</PageTitle>
 <h3>Shopping Cart</h3>
 
-@if(cartProducts == null || cartProducts.Count == 0){
+@if(cartProducts == null || cartProducts.Count == 0)
+{
     <span>@message</span>
 }
 else{
     <div>
-    @foreach (var product in cartProducts)
-    {
-        <div class="container">
-            <div class="image-wrapper">
-                <img src="@product.ImageUrl" class="image"/>
+        @foreach (var product in cartProducts)
+        {
+            <div class="container">
+                <div class="image-wrapper">
+                    <img src="@product.ImageUrl" class="image"/>
+                </div>
+                <div class="name">
+                    <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
+                    <span>@product.ProductType</span><br/>
+                    <input type="number" value="@product.Quantity"
+                        @onchange="@((ChangeEventArgs e)=> UpdateQuantity(e, product))"
+                        class="form-control input-quantity"
+                        min="1"/>
+                    <button class="btn-delete" @onclick="@(() =>
+                        RemoveProductFromCart(product.ProductId, product.ProductTypeId))">Delete</button>
+                </div>
+                <div class="cart-product-price">$@(product.Price * product.Quantity)</div>
             </div>
-            <div class="name">
-                <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
-                <span>@product.ProductType</span><br/>
-                <input type="number" value="@product.Quantity"
-                    @onchange="@((ChangeEventArgs e)=> UpdateQuantity(e, product))"
-                    class="form-control input-quantity"
-                    min="1"/>
-                <button class="btn-delete" @onclick="@(() =>
-                    RemoveProductFromCart(product.ProductId, product.ProductTypeId))">Delete</button>
-            </div>
-            <div class="cart-product-price">$@(product.Price * product.Quantity)</div>
-        </div>
-    }
-      <div class="cart-product_price">
-        Total (@cartProducts.Count): $@cartProducts.Sum(product => @product.Price * product.Quantity)
-      </div>
-    </div>
+        }
+         <div class="cart-product_price float-end">
+           Total (@cartProducts.Count): $@cartProducts.Sum(product => @product.Price * product.Quantity)
+           <div><button @onclick="PlaceOrder" class="btn alert-success mt-1">Place Order</button></div> 
+        </div>   
+    </div>  
 }
+    
 @code {
     List<CartProductResponse> cartProducts = null;
     string message = "loading cart...";
@@ -62,6 +66,10 @@ else{
         if (product.Quantity < 1)
             product.Quantity = 1;
         await CartService.UpdateQuantity(product);
+    }
+    private async Task PlaceOrder()
+    {
+        await OrderService.PlaceOrder();
     }
 
 }
