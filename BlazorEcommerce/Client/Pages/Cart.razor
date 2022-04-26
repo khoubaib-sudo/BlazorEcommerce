@@ -8,6 +8,9 @@
 {
     <span>@message</span>
 }
+else if(orderPlaced){
+    <span>Thank you for your order! you can check your orders <a href="orders">here</a></span>
+}
 else{
     <div>
         @foreach (var product in cartProducts)
@@ -39,9 +42,11 @@ else{
 @code {
     List<CartProductResponse> cartProducts = null;
     string message = "loading cart...";
+    bool orderPlaced = false;
 
     protected override async Task OnInitializedAsync()
     {
+        orderPlaced = false;
         await LoadCart();
 
 
@@ -70,6 +75,7 @@ else{
     private async Task PlaceOrder()
     {
         await OrderService.PlaceOrder();
+        await CartService.GetCartItemsCount();
+        orderPlaced = true;
     }
-
 }
