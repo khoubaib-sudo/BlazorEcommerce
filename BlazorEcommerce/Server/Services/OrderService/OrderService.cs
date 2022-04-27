@@ -52,7 +52,7 @@ namespace BlazorEcommerce.Server.Services.OrderService
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.ProductType)
                 .Where(o => o.UserId == _authService.GetUserId() && o.Id == orderId)
-                .OrderByDescending(o => o.OrderItems)
+                .OrderByDescending(o => o.OrderDate)
                 .FirstOrDefaultAsync();
 
             if (order == null)
