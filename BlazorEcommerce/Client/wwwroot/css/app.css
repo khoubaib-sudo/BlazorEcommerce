@@ -2,11 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Henny+Penny&family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Henny+Penny&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap');
+
+
 
 html, body {
-    font-family: 'Beau Rivage', cursive;
+    font-family: 'Jolly Lodger', cursive;
+    font-weight: bolder;
 }
-
  
 h1:focus {
     outline: none;
