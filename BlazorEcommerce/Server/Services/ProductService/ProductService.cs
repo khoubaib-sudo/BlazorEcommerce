@@ -32,7 +32,7 @@
             {
                 Data = await _context.Products
                 .Where(p => p.Visible && !p.Deleted)
-                .Include(p =>p.Variants.Where(v => v.Visible && !v.Deleted))
+                .Include(p => p.Variants.Where(v => v.Visible && !v.Deleted))
                 .ToListAsync()
             };
             return response;
@@ -59,7 +59,7 @@
 
             foreach (var product in products)
             {
-                if(product.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                if (product.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase))
                 {
                     result.Add(product.Title);
                 }
@@ -71,7 +71,7 @@
                         .Select(s => s.Trim(punctuation));
                     foreach (var word in words)
                     {
-                        if(word.Contains(searchText, StringComparison.OrdinalIgnoreCase)
+                        if (word.Contains(searchText, StringComparison.OrdinalIgnoreCase)
                             && !result.Contains(word))
                         {
                             result.Add(word);
@@ -94,10 +94,10 @@
                     .ToListAsync()
 
             };
-            return response;       
+            return response;
         }
 
-        public async Task<ServiceResponse<ProductSearchResult>> SearchProducts(string searchText,int page)
+        public async Task<ServiceResponse<ProductSearchResult>> SearchProducts(string searchText, int page)
         {
             var pageResults = 2f;
             var pageCount = Math.Ceiling((await FindProductsBySearchText(searchText)).Count / pageResults);
@@ -117,7 +117,7 @@
                 {
                     Products = products,
                     CurrentPage = page,
-                    Pages =(int)pageCount
+                    Pages = (int)pageCount
                 }
             };
             return response;
@@ -132,6 +132,20 @@
                                 p.Visible && !p.Deleted)
                                 .Include(p => p.Variants)
                                 .ToListAsync();
+        }
+
+        public async Task<ServiceResponse<List<Product>>> GetAdminProducts()
+        {
+            var response = new ServiceResponse<List<Product>>
+            {
+                Data = await _context.Products
+                    .Where(p => !p.Deleted)
+                    .Include(p => p.Variants.Where(v => !v.Deleted))
+                    .ThenInclude(v => v.ProductType)   
+                    .ToListAsync()
+            };
+
+            return response;
         }
     }
 }
