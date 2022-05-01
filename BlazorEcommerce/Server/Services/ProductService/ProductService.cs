@@ -20,7 +20,7 @@
                 product = await _context.Products
                     .Include(p => p.Variants.Where(v => !v.Deleted))
                     .ThenInclude(v => v.ProductType)
-                  
+                    
                     .FirstOrDefaultAsync(p => p.Id == productId && !p.Deleted);
             }
             else
@@ -28,7 +28,8 @@
                 product = await _context.Products
                     .Include(p => p.Variants.Where(v => v.Visible && !v.Deleted))
                     .ThenInclude(v => v.ProductType)
-               
+                    
+
                     .FirstOrDefaultAsync(p => p.Id == productId && !p.Deleted && p.Visible);
             }
             
